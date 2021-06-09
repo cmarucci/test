@@ -21,28 +21,33 @@ yticks(0:0.25:1)
     % xticklabels(0:10:100) / xticklabels({'0', '10', '20', '30', '40',
     % '50', '60', '70', '80', '90', '100'})
     % yticklables(0:0.25:1) / yticklabels({'0', '0.25', '0.5', '0.75', '1'})
-title('Practice Behavioral Data Plot')
 legend('original data', 'offset data', 'Location', 'northwest')
 
 % F2: linear fit (appears non-linear because of log scale)
 f2 = fittype('a*x+b', 'independent', 'x', 'dependent', 'y')
-myfit2 = fit(x, y, f2, 'Start', [0, 0])
-plot(myfit2, x, y)
+myfit2 = fit(x, y, f2, 'Start', [(y(5)-y(1))/(x(5)-x(1)), 0.1064])
+plot(myfit2, 'magenta', x, y)
 
 % F3: exponential fit (using fittype function)
 f3 = fittype('a*exp(b*x)', 'independent', 'x', 'dependent', 'y')
-myfit3 = fit(x, y, f3, 'Start', [0, 0])
-% myfit2 = fit(x, y, f3, 'Start', [0, 1])
-plot(myfit3, x, y)
+myfit3 = fit(x, y, f3, 'Start', [0.2391, 0.01602])
+plot(myfit3, 'cyan', x, y)
 
 % F4: Weibull function fit
-f4 = fittype('c*a*b*x^(b-1)*exp(-a*x^b)', 'independent', 'x', ...
-    'dependent', 'y')
-myfit4 = fit(x, y, f4, 'Start', [0.01, 0.01, 0.01])
-plot(myfit4, x, y)
+% TODO: need to figure out parameter vals & starting points
+% f4 = fittype('c*a*b*x^(b-1)*exp(-a*x^b)', 'independent', 'x', ...
+%     'dependent', 'y')
+% myfit4 = fit(x, y, f4, 'Start', [0.02106, 1.039, 1.852])
+% plot(myfit4, x, y)
+f5 = fittype('1-exp(-(x/a)^b)')
+myfit5 = fit(x, y, f5, 'Start', [0.01, 0.01])
+plot(myfit5, 'red', x, y)
 
 % determine threshold (75% of time see size change reliably)
 
+title('Practice Behavioral Data Plot')
+legend('original data', 'offset data', '', 'linear fit', '', 'exponential fit', ... 
+    '', 'weibull fit', 'Location', 'northwest')
 xlabel('Size of Change')
 ylabel('Proportion of Correct')
 hold off
