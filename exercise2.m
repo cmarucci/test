@@ -42,6 +42,10 @@ yticks(0:0.25:1)
 f = fittype('1-exp(-(x/a)^b)');
 myfit = fit(vals, r, f, 'Start', [25.69, 1.859])
 plot(myfit, 'red', vals, r)
+% ft = fittype( '1-exp(-(x-c)/a)^b');
+% myfit2 = fit(vals, r, f, 'Start', [25.69, 1.859, 1]) % when try to do 3 
+% % parameter fit says have too many starting points? also fit doesn't look any different thanthe 2 parameter fit
+% plot(myfit2, 'green', vals, r)
 
 % plot's visual appearance
 title('Ex2: Practice Behavioral Data Plot')
