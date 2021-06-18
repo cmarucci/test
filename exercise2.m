@@ -33,19 +33,24 @@ ylim([0 1])
 xticks(0:10:100)
 yticks(0:0.25:1)
 
-% Weibull function fit
-% TODO: add the 3rd parameter
+%% WEIBULL FIT
 % f2 = fittype('c*a*b*x^(b-1)*exp(-a*x^b)', 'independent', 'x', ...
 %     'dependent', 'y')
 % myfit2 = fit(vals, r, f2, 'Start', [25.69, 1.859, 1])
 % plot(myfit2, 'green', vals, r)
-f = fittype('1-exp(-(x/a)^b)');
-myfit = fit(vals, r, f, 'Start', [25.69, 1.859])
-plot(myfit, 'red', vals, r)
-% ft = fittype( '1-exp(-(x-c)/a)^b');
-% myfit2 = fit(vals, r, f, 'Start', [25.69, 1.859, 1]) % when try to do 3 
-% % parameter fit says have too many starting points? also fit doesn't look any different thanthe 2 parameter fit
-% plot(myfit2, 'green', vals, r)
+
+% 2 PARAMETER FIT
+% f = fittype('1-exp(-(x/a)^b)');
+% myfit = fit(vals, r, f, 'Start', [25.69, 1.859])
+% plot(myfit, 'red', vals, r)
+
+% !!3 PARAMETER FIT - WHERE GET ERROR MSG!!
+ft = fittype( '1-exp(-(x-c)/a)^b');
+myfit2 = fit(vals, r, f, 'Start', [25.69, 1.859, 1]) 
+plot(myfit2, 'green', vals, r)
+% when try to do 3 parameter fit, says have too many starting points? 
+% also fit doesn't look any different than the 2 parameter fit when take 
+% away 3rd starting point
 
 % plot's visual appearance
 title('Ex2: Practice Behavioral Data Plot')
